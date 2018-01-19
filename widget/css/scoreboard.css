@@ -1,0 +1,82 @@
+body{
+    background-color: black;
+    background: linear-gradient(to bottom, #a0a0a0 40%,black 100%);
+}
+
+#status{
+    text-align: center;
+    margin-top: 10vh;
+    padding: 1vw;
+}
+
+#scoreboard{
+    position: absolute;
+    top:0px;
+    height: 100%;
+    width:100%;
+}
+
+
+@keyframes FADEIN-ANIMATION {
+    0%   { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+#firstPlace,#secondPlace ,#thirdPlace{
+    text-align: center;
+}
+
+#firstPlace > img{
+    width: 35vw;
+    height: 35vw;
+    border: 5px solid white;
+    border-radius: 50%;
+    animation: FADEIN-ANIMATION 1s;
+}
+
+#secondPlace > img{
+    width: 25vw;
+    height: 25vw;
+    border: 3px solid white;
+    border-radius: 50%;
+    animation: FADEIN-ANIMATION 3s;
+}
+
+#secondPlace > .score{
+    font-size: .8em;
+}
+
+#thirdPlace > img{
+    width: 20vw;
+    height: 20vw;
+    border: 3px solid white;
+    border-radius: 50%;
+    animation: FADEIN-ANIMATION 5s;
+}
+
+#thirdPlace > .score{
+    font-size: .6em;
+}
+
+#others{
+    margin-top: 5vh;
+    margin-bottom:16vh;
+    animation: FADEIN-ANIMATION 6s;
+}
+#others > .score{
+    font-size: .5em;
+    padding-left: 2vh;
+    padding-right: 2vh;
+}
+
+#others > .score > span{
+    float:right;
+}
+
+#btnPlay{
+    position: fixed;
+    height: 15vh;
+    width:100%;
+    top: 85vh;
+    background-color: black;
+}

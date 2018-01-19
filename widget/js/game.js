@@ -30,7 +30,7 @@ var game= {
             }
             else{
                 this.currentScore+=this.currentStage.score;
-                this.showNewScore(this.currentScore,function() {
+                this.showNewScore(this.currentScore, this.currentLevel,function() {
 
                         if (game.currentLevel % 10 == 0)
                             game.startLevel();
@@ -51,9 +51,13 @@ var game= {
         else if(game.currentLevel <= 20)
             return new Stage(6, shapes.shuffle().slice(0,6), colors.slice(0,4),game.currentLevel );
         else if(game.currentLevel <= 30)
-            return new Stage(4, shapes.shuffle().slice(0,9), colors.slice(0,6),game.currentLevel );
+            return new Stage(4, shapes.shuffle().slice(0,8), colors.slice(0,6),game.currentLevel );
+        else if(game.currentLevel <= 40)
+            return new Stage(2, shapes.shuffle().slice(0,12), colors,game.currentLevel );
+        else if(game.currentLevel <= 50)
+            return new Stage(1, shapes.shuffle().slice(0,12), colors,game.currentLevel );
         else
-            return new Stage(2, shapes.shuffle().slice(0,9), colors,game.currentLevel );
+            return new Stage(0.5, shapes.shuffle().slice(0,12), colors,game.currentLevel );
     }
     , getFocusSymbol: function () {
         return {

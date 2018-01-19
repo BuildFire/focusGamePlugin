@@ -1,9 +1,10 @@
-/**
- * Created by danielhindi on 1/10/18.
- */
+//by danielhindi on 1/10/18.
+
 
 var gameUI= {
-    init:function(){
+    init:function(user,scoreboard){
+        this.user=user;
+        this.scoreboard=scoreboard;
         this.focusSection = document.getElementById("focusSection");
         this.shapesSection = document.getElementById("shapesSection");
         this.actionBar = document.getElementById("actionBar");
@@ -13,12 +14,12 @@ var gameUI= {
         this.arc=document.getElementById("arc");
         this.gameTmr=null;
 
+        var shapeBaseURL= "./css/shapes/";
         game.showFocusSymbol = function (symbol, cb) {
 
             gameUI.focusSection.innerHTML =
-                "Is there a " + symbol.color + " " + symbol.shape
-                + '<div style="background-color:' + symbol.color  + '" class="shape  ' + symbol.shape + '"></div>';
-            ;
+                "<div>Is there a " + symbol.color + " " + symbol.shape + "</div>"
+                + '<img style="background-color:' + symbol.color  + '" class="shape" src="' + shapeBaseURL + symbol.shape + '.png" />';
 
             gameUI.shapesSection.innerHTML='Get Ready...';
             gameUI.actionBar.classList.add("hidden");
@@ -35,7 +36,7 @@ var gameUI= {
         game.showSymbols = function(symbols,seconds,userAnsweredFn){
             var html='';
             symbols.forEach(function(s){
-                html += '<div style="background-color:' + s.color  + '" class="shape  ' + s.shape + '"></div>';
+                html += '<img style="background-color:' + s.color  + '" class="shape" src="' + shapeBaseURL + s.shape + '.png" />';
             });
             gameUI.shapesSection.innerHTML=html;
             gameUI.actionBar.classList.remove("hidden");
@@ -63,19 +64,40 @@ var gameUI= {
 
         };
 
-        game.showNewScore = function(newScore,cb){
-            score.innerHTML=newScore;
+        game.showNewScore = function(newScore,level,cb){
+            score.innerHTML="Level: " + (Math.floor(level / 10)+1) + " Score: " + newScore;
             cb.call(game);
-        }
+        };
 
-        game.showGameOver = function () {
-            gameUI.shapesSection.innerHTML ="Game Over! <button onclick='location.reload()'>Start Over</button>"
-        }
+        game.showGameOver = function (score) {
+
+            gameUI.scoreboard.logScore(gameUI.user, score,function(err,result){
+                if(result){
+                    /// means you made top 10 list
+                    gameUI.shapesSection.innerHTML='';
+
+                    var span = document.createElement('span');
+                    span.innerHTML="Congratulations! You ranked #" + (result.rankedAt +1) ;
+                    gameUI.shapesSection.appendChild(span);
+
+                    var btn = document.createElement('button');
+                    btn.innerHTML="See High Score!";
+                    btn.onclick=function(){location = "index.html";};
+                    gameUI.shapesSection.appendChild(btn);
+
+
+                }
+                else {
+                    gameUI.shapesSection.innerHTML = "Game Over! <button onclick='location.reload()'>Start Over</button>";
+                }
+            });
+
+
+            gameUI.actionBar.style.display="none";
+        };
 
 
     }
 };
 
 
-gameUI.init();
-game.start({});

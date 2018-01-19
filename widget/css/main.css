@@ -1,0 +1,22 @@
+body{
+    font-size: 5vh;
+    margin: 0px;
+    width: 100vw;
+    height: 100vh;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    color:white;
+    background-color: black;
+    font-family: Verdana;
+}
+
+button{
+    background-color: transparent;
+    font-size: 5vh;
+    color:white;
+    height: 10vh;
+}
+
+.hidden{
+    display: none !important;
+}

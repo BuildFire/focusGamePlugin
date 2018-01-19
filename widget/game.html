@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recognition</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/game.css">
+    <meta name="buildfire" content="disableTheme">
+    <script src="../../../scripts/buildfire.js"></script>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div id="gameBoard">
+        <div id="focusSection">Focus!</div>
+        <div id="shapesSection">
+        </div>
+        <div id="scoreSection">
+            <div id="arc">
+            </div>
+            <div id="score">Level: 0 Score: 0</div>
+
+        </div>
+
+        <div id="actionBar" class="hidden">
+            <button id="btnYes">Yes</button>
+            <button id="btnNo">No</button>
+        </div>
+    </div>
+
+
+    <script src="js/arrayEnhancements.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/gameUI.js"></script>
+    <script src="js/scoreboard.js"></script>
+    <script src="../../../scripts/buildfire/services/notifications/pushNotifications.js"></script>
+
+    <script>
+
+        var scoreboard = new buildfire.gamify.Scoreboard("scoreboard",10,true);
+
+        buildfire.auth.getCurrentUser(function(err,user){
+            if(err || !user){
+                buildfire.auth.login({},function(err,user){
+                    if(user) {
+                        gameUI.init(user,scoreboard);
+                        game.start(user);
+                    }
+                    else
+                        window.location = 'index.html';
+                });
+            }
+            else {
+                gameUI.init(user,scoreboard);
+                game.start(user);
+            }
+        });
+
+        buildfire.auth.onLogout(function(){
+            window.location = 'index.html';
+        });
+
+    </script>
+
+<script src="../../../scripts/buildfire/services/notifications/pushNotifications.js"></script>
+
+</body>
+</html>

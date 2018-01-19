@@ -3,29 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <title>Recognition</title>
-    <link rel="stylesheet" href="css/game.css">
-    <link rel="stylesheet" href="css/shapes.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/scoreboard.css">
+    <meta name="buildfire" content="disableTheme">
+    <script src="../../../scripts/buildfire.js"></script>
+    <link rel="stylesheet" href="css/main.css">
 
 </head>
 <body>
-    <div id="gameBoard">
-        <div id="focusSection">Focus on White Circle</div>
-        <div id="shapesSection">
+    <div id="status">Loading...</div>
+    <div id="scoreboard" class="hidden">
+        <div id="firstPlace" class="hidden">
+            <img src="">
+            <div class="score">Bashar Score: 999 </div>
         </div>
-        <div id="scoreSection">
-            <div id="arc">
-            </div>
-            <div id="score">0</div>
-
+        <div id="secondPlace" class="hidden">
+            <img src="">
+            <div class="score">Bashar Score: 999 </div>
         </div>
-
-        <div id="actionBar" class="hidden">
-            <button id="btnYes">Yes</button>
-            <button id="btnNo">No</button>
+        <div id="thirdPlace" class="hidden">
+            <img src="">
+            <div class="score">Bashar Score: 999 </div>
+        </div>
+        <div id="others" class="hidden">
+            <div class="score">Bashar Score: 999 </div>
+            <div class="score">Bashar Score: 999 </div>
+            <div class="score">Bashar Score: 999 </div>
+            <div class="score">Bashar Score: 999 </div>
+            <div class="score">Bashar Score: 999 </div>
+            <div class="score">Bashar Score: 999 </div>
+            <div class="score">Bashar Score: 999 </div>
         </div>
     </div>
-    <script src="js/arrayEnhancements.js"></script>
-    <script src="js/game.js"></script>
-    <script src="js/gameUI.js"></script>
+
+    <button id="btnPlay" onclick="location='game.html'">Play</button>
+
+    <script src="js/scoreboard.js"></script>
+    <script src="js/scoreboardUI.js"></script>
+    <script>
+
+
+        var scoreboard = new buildfire.gamify.Scoreboard("scoreboard");
+        scoreboard.getScoreboard(function(e,b){
+            if(e)
+                console.error(e);
+            else
+                scoreboardUI.update(b);
+        });
+
+    </script>
+
 </body>
 </html>

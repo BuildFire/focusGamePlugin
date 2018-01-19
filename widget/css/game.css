@@ -1,26 +1,4 @@
 
-body{
-    font-size: 5vh;
-    margin: 0px;
-    width: 100vw;
-    height: 100vh;
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
-    color:white;
-    background-color: black;
-    font-family: Verdana;
-}
-
-button{
-    background-color: transparent;
-    font-size: 5vh;
-    color:white;
-    height: 10vh;
-}
-
-.hidden{
-    display: none !important;
-}
 
 #gameBoard{
     height:100vh;
@@ -35,9 +13,6 @@ button{
     transition-duration: 1s;
 }
 
-#focusSection > div{
-    margin-left: 45%;
-}
 
 #shapesSection{
     padding: 1vw;
@@ -54,6 +29,13 @@ button{
     width:90%;
     margin-left:5%
 }
+
+.shape{
+    width:16vw;
+    height:16vw;
+    margin:2vh;
+}
+
 
 #scoreSection{
     height: 30vh;
@@ -103,6 +85,7 @@ button{
 #score{
     position: absolute;
     width:100vw;
-    top: 60vh;
+    top: 70vh;
     text-align: center;
 }
+
