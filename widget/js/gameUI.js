@@ -51,16 +51,28 @@ var gameUI= {
                 userAnsweredFn.call(game,null);
             },seconds * 1000);
 
-            gameUI.btnYes.onclick=function () {
+            function fnYes() {
                 gameUI.arc.classList.remove('timeBomb');
                 if(gameUI.gameTmr)clearTimeout(gameUI.gameTmr);
                 userAnsweredFn.call(game,true);
             };
-            gameUI.btnNo.onclick=function () {
+
+            function fnNo() {
                 gameUI.arc.classList.remove('timeBomb');
                 if(gameUI.gameTmr)clearTimeout(gameUI.gameTmr);
                 userAnsweredFn.call(game,false);
             };
+
+
+
+            if( location.protocol.indexOf('http')==0) {
+                gameUI.btnYes.onclick = fnYes;
+                gameUI.btnNo.onclick = fnNo;
+            }
+            else{
+                gameUI.btnYes.ontouchstart = fnYes;
+                gameUI.btnNo.ontouchstart = fnNo;
+            }
 
         };
 
@@ -73,7 +85,7 @@ var gameUI= {
 
             gameUI.scoreboard.logScore(gameUI.user, score,function(err,result){
 
-                if(result && result.rankedAt){
+                if(result && result.rankedAt >= 0){
                     /// means you made top 10 list
                     gameUI.shapesSection.innerHTML='';
 

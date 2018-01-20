@@ -152,7 +152,7 @@ buildfire.gamify.Scoreboard.prototype = {
                         if(rankedAt == 1) {
                             buildfire.notifications.pushNotification.schedule({
                                 title: "There is a challenger to the champion"
-                                , text: user.displayName + " has taken 2nd place with a score of " + score + ". Watch out " + data.topScores[0].displayName
+                                , text: user.displayName + " has taken 2nd place with a score of " + score + ". Watch out " + data.topScores[0].user.displayName
                                 , groupName: t.pushGroupName
                             }, logError);
                         }
