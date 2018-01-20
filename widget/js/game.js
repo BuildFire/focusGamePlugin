@@ -56,7 +56,7 @@ var game= {
         else if(game.currentLevel <= 50)
             return new Stage(2, shapes.shuffle().slice(0,12), colors,game.currentLevel );
         else
-            return new Stage(1, shapes.shuffle().slice(0,12), colors,game.currentLevel );
+            return new Stage(1.5, shapes.shuffle().slice(0,12), colors,game.currentLevel );
     }
     , getFocusSymbol: function () {
         return {

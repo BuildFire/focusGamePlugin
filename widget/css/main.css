@@ -6,6 +6,7 @@ body{
     /*overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     */
+    user-select: none;
     color:white;
     background-color: black;
     font-family: Verdana;
