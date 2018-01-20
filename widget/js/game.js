@@ -47,23 +47,23 @@ var game= {
     , showFocusSymbol: function (symbol, cb) {}
     , getStage: function () {
         if(game.currentLevel <= 10)
-            return new Stage(8, shapes.shuffle().slice(0,3), colors.slice(0,3),game.currentLevel );
+            return new Stage(6, shapes.shuffle().slice(0,3), colors.slice(0,3),game.currentLevel );
         else if(game.currentLevel <= 20)
-            return new Stage(6, shapes.shuffle().slice(0,6), colors.slice(0,4),game.currentLevel );
+            return new Stage(5, shapes.shuffle().slice(0,6), colors.slice(0,4),game.currentLevel );
         else if(game.currentLevel <= 30)
             return new Stage(4, shapes.shuffle().slice(0,8), colors.slice(0,6),game.currentLevel );
         else if(game.currentLevel <= 40)
-            return new Stage(2, shapes.shuffle().slice(0,12), colors,game.currentLevel );
+            return new Stage(3, shapes.shuffle().slice(0,12), colors,game.currentLevel );
         else if(game.currentLevel <= 50)
-            return new Stage(1, shapes.shuffle().slice(0,12), colors,game.currentLevel );
+            return new Stage(2, shapes.shuffle().slice(0,12), colors,game.currentLevel );
         else
-            return new Stage(0.5, shapes.shuffle().slice(0,12), colors,game.currentLevel );
+            return new Stage(1, shapes.shuffle().slice(0,12), colors,game.currentLevel );
     }
     , getFocusSymbol: function () {
         return {
             shape: this.currentStage.shapes[rnd (this.currentStage.shapes.length -1)]
             , color: this.currentStage.colors[rnd(this.currentStage.colors.length-1)]
-        }
+        };
     }
 
 };

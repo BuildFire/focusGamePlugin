@@ -48,7 +48,7 @@ buildfire.gamify.Scoreboard.prototype = {
         if(this._PNEnabled()) {
             buildfire.notifications.pushNotification.subscribe({groupName: this.pushGroupName}, function (err) {
                 if (err) console.error(err);
-                if(cb)cb(err)
+                if(cb)cb(err);
             });
             return true;
         }else
@@ -59,7 +59,7 @@ buildfire.gamify.Scoreboard.prototype = {
         if(this._PNEnabled()) {
             buildfire.notifications.pushNotification.unsubscribe({groupName: this.pushGroupName}, function (err) {
                 if (err) console.error(err);
-                if(cb)cb(err)
+                if(cb)cb(err);
             });
             return true;
         }else
@@ -119,7 +119,7 @@ buildfire.gamify.Scoreboard.prototype = {
                     data.gamesPlayed++;
                     buildfire.publicData.update(result.id, data, t.tagName, logError);
 
-                    var rankedAt=0;
+                    var rankedAt=null;
                     for(var i = 0; i < data.topScores.length ;i++){
                         if(data.topScores[i].createdOn == ts){
                             rankedAt = i;
@@ -129,14 +129,14 @@ buildfire.gamify.Scoreboard.prototype = {
                     var obj={bumpedOff:bumpedOff, rankedAt:rankedAt};
 
                     if(t._PNEnabled()) {
-                        debugger;
+
                         if( obj.bumpedOff && obj.bumpedOff.user.email != user.email){
 
                             //send notification
                             buildfire.notifications.pushNotification.schedule({
                                 title: "You got kicked off !!!"
                                 ,text: "Your old score is no longer on the top 10. " + user.displayName + " has taken your spot. Honestly, I dont know how you sleep at night."
-                                ,at: new Date()
+                                //,at: new Date()
                                 ,users:[obj.bumpedOff.user.id]
                             },logError);
                         }
@@ -144,12 +144,8 @@ buildfire.gamify.Scoreboard.prototype = {
                         if(rankedAt == 0) {
                             buildfire.notifications.pushNotification.schedule({
                                 title: "There is a new champion!"
-                                ,
-                                text: user.displayName + " has taken the lead at the new undisputed champion with a score of " + score
-                                ,
-                                at: new Date()
-                                ,
-                                groupName: t.pushGroupName
+                                ,text: user.displayName + " has taken the lead at the new undisputed champion with a score of " + score
+                                ,groupName: t.pushGroupName
                             }, logError);
                         }
 
@@ -157,7 +153,6 @@ buildfire.gamify.Scoreboard.prototype = {
                             buildfire.notifications.pushNotification.schedule({
                                 title: "There is a challenger to the champion"
                                 , text: user.displayName + " has taken 2nd place with a score of " + score + ". Watch out " + data.topScores[0].displayName
-                                , at: new Date()
                                 , groupName: t.pushGroupName
                             }, logError);
                         }
@@ -166,7 +161,6 @@ buildfire.gamify.Scoreboard.prototype = {
                             buildfire.notifications.pushNotification.schedule({
                                 title: "There is a kid in town!"
                                 , text: user.displayName + " has taken 3rd place. Keep an eye on this one"
-                                , at: new Date()
                                 , groupName: t.pushGroupName
                             }, logError);
                         }

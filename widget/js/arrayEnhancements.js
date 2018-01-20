@@ -28,5 +28,5 @@ Array.prototype.randomPop = function() {
 };
 
 Array.prototype.randomPick = function() {
-    return this[rnd(this.length-1)]
+    return this[rnd(this.length-1)];
 };

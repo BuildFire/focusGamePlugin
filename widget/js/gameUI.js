@@ -54,12 +54,12 @@ var gameUI= {
             gameUI.btnYes.onclick=function () {
                 gameUI.arc.classList.remove('timeBomb');
                 if(gameUI.gameTmr)clearTimeout(gameUI.gameTmr);
-                userAnsweredFn.call(game,true)
+                userAnsweredFn.call(game,true);
             };
             gameUI.btnNo.onclick=function () {
                 gameUI.arc.classList.remove('timeBomb');
                 if(gameUI.gameTmr)clearTimeout(gameUI.gameTmr);
-                userAnsweredFn.call(game,false)
+                userAnsweredFn.call(game,false);
             };
 
         };
@@ -72,7 +72,8 @@ var gameUI= {
         game.showGameOver = function (score) {
 
             gameUI.scoreboard.logScore(gameUI.user, score,function(err,result){
-                if(result){
+
+                if(result && result.rankedAt){
                     /// means you made top 10 list
                     gameUI.shapesSection.innerHTML='';
 

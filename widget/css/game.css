@@ -6,9 +6,10 @@
 }
 
 #focusSection{
+    padding-top: 2vh;
     text-align: center;
     border-bottom: double 1px gray;
-    height: 30vh;
+    height: 28vh;
     overflow: hidden;
     transition-duration: 1s;
 }

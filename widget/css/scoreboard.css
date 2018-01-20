@@ -10,10 +10,9 @@ body{
 }
 
 #scoreboard{
-    position: absolute;
-    top:0px;
-    height: 100%;
-    width:100%;
+    padding-top: 5vh;
+    height: 80vh;
+    overflow:scroll;
 }
 
 
@@ -74,9 +73,7 @@ body{
 }
 
 #btnPlay{
-    position: fixed;
     height: 15vh;
     width:100%;
-    top: 85vh;
     background-color: black;
 }

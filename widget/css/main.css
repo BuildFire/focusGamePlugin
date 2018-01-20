@@ -3,11 +3,13 @@ body{
     margin: 0px;
     width: 100vw;
     height: 100vh;
-    overflow-y: scroll;
+    /*overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+    */
     color:white;
     background-color: black;
     font-family: Verdana;
+
 }
 
 button{
