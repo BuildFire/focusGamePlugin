@@ -21,15 +21,14 @@ var game= {
     }
     , startRound:function(){
         var objSymbols = this.currentStage.getSymbols(this.currentSymbol);
-        this.showSymbols(objSymbols.symbols,this.currentStage.seconds,function(answer){
+        this.showSymbols(objSymbols.symbols,this.currentStage.seconds,function(answer,bonus){
             this.currentLevel++;
 
             if(objSymbols.hasFocusSymbol !== answer){
-
                 this.showGameOver(this.currentScore);
             }
             else{
-                this.currentScore+=this.currentStage.score;
+                this.currentScore+=this.currentStage.score + (0 || bonus);
                 this.showNewScore(this.currentScore, this.currentLevel,function() {
 
                         if (game.currentLevel % 10 == 0)

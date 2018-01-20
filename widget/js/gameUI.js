@@ -1,6 +1,5 @@
 //by danielhindi on 1/10/18.
 
-
 var gameUI= {
     init:function(user,scoreboard){
         this.user=user;
@@ -25,16 +24,17 @@ var gameUI= {
             gameUI.actionBar.classList.add("hidden");
             gameUI.btnYes.onclick=null;
             gameUI.btnNo.onclick=null;
-            ///pause for 3 sec for the user to ficus
+            ///pause for 3 sec for the user to focus
             setTimeout(function(){
-                cb.call(game);}
-            ,3000);
+                cb.call(game);
+            },3000);
 
         };
 
-
         game.showSymbols = function(symbols,seconds,userAnsweredFn){
             var html='';
+            var ts = new Date();
+
             symbols.forEach(function(s){
                 html += '<img style="background-color:' + s.color  + '" class="shape" src="' + shapeBaseURL + s.shape + '.png" />';
             });
@@ -43,24 +43,31 @@ var gameUI= {
             gameUI.arc.style.animationDuration = seconds+ 's';
             setTimeout(function() {
                 gameUI.arc.classList.add('timeBomb');
-
             },10);
 
             if(gameUI.gameTmr)clearTimeout(gameUI.gameTmr);
+
             gameUI.gameTmr = setTimeout(function() {/// time limit
                 userAnsweredFn.call(game,null);
             },seconds * 1000);
 
+            function getBonus(){
+                var ms = new Date() - ts;
+                var bonus = 5000 - ms;
+                if(bonus<0)bonus=0;
+                return Math.round(bonus/100) ;
+            }
+
             function fnYes() {
                 gameUI.arc.classList.remove('timeBomb');
                 if(gameUI.gameTmr)clearTimeout(gameUI.gameTmr);
-                userAnsweredFn.call(game,true);
+                userAnsweredFn.call(game,true,getBonus());
             };
 
             function fnNo() {
                 gameUI.arc.classList.remove('timeBomb');
                 if(gameUI.gameTmr)clearTimeout(gameUI.gameTmr);
-                userAnsweredFn.call(game,false);
+                userAnsweredFn.call(game,false,getBonus());
             };
 
 

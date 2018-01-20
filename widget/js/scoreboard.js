@@ -119,7 +119,7 @@ buildfire.gamify.Scoreboard.prototype = {
                     data.gamesPlayed++;
                     buildfire.publicData.update(result.id, data, t.tagName, logError);
 
-                    var rankedAt=null;
+                    var rankedAt;
                     for(var i = 0; i < data.topScores.length ;i++){
                         if(data.topScores[i].createdOn == ts){
                             rankedAt = i;

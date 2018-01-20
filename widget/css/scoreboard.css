@@ -5,8 +5,8 @@ body{
 
 #status{
     text-align: center;
-    margin-top: 10vh;
-    padding: 1vw;
+    padding-top: 5vh;
+    height: 80vh;
 }
 
 #scoreboard{
