@@ -89,10 +89,11 @@ var gameUI= {
         };
 
         game.showGameOver = function (score) {
-
+            gameUI.gameMusic.pause();
             gameUI.scoreboard.logScore(gameUI.user, score,function(err,result){
 
                 if(result && result.rankedAt >= 0){
+                    new Audio('audio/win.mp3').play();
                     /// means you made top 10 list
                     gameUI.shapesSection.innerHTML='';
 
@@ -108,6 +109,7 @@ var gameUI= {
 
                 }
                 else {
+                    new Audio('audio/lose.mp3').play();
                     gameUI.shapesSection.innerHTML = "Game Over! <button onclick='location.reload()'>Start Over</button>";
                 }
             });
@@ -116,6 +118,13 @@ var gameUI= {
             gameUI.actionBar.style.display="none";
         };
 
+
+        this.gameMusic = new Audio('audio/gamePlay.mp3');
+        this.gameMusic.play();
+        this.gameMusic.addEventListener('ended', function() {
+            this.currentTime = 0;
+            this.play();
+        }, false);
 
     }
 };
