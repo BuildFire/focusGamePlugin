@@ -9,16 +9,17 @@
     padding-top: 2vh;
     text-align: center;
     border-bottom: double 1px gray;
-    height: 28vh;
+    max-height: 28vh;
     overflow: hidden;
     transition-duration: 1s;
+    font-size: .8em;
 }
 
 
 #shapesSection{
     padding: 1vw;
     width: 100vw;
-    height: 40vh;
+    height: 50vh;
     overflow: hidden;
     background-color: black;
     display:flex;
@@ -39,7 +40,7 @@
 
 
 #scoreSection{
-    height: 30vh;
+    height: 15vh;
     line-height: 25vh;
     overflow: hidden;
 }

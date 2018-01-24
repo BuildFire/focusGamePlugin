@@ -68,7 +68,7 @@ var game= {
 };
 
 var shapes = ['triangle', 'square', 'rectangle', 'circle', 'pentagon', 'hexagon', 'octagon', 'diamond', 'oval', 'parallel', 'trapezoid', 'star', 'halfCircle', 'question', 'arrow'];
-var colors = ['red', 'green', 'blue', 'yellow', 'orange', 'white','pink','purple','lightgray'];
+var colors = ['red', 'green', 'blue', 'yellow', 'orange', 'white','deeppink','purple','darkgrey'];
 
 
 function Stage(seconds, shapes, colors,score) {

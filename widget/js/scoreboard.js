@@ -42,7 +42,6 @@ buildfire.gamify.Scoreboard.prototype = {
     , _PNEnabled:function(){
         return buildfire.notifications && buildfire.notifications.pushNotification;
     }
-
     ,subscribe:function(cb){
         /// if PushNotifications are available then subscribe to the group
         if(this._PNEnabled()) {

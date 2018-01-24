@@ -17,6 +17,9 @@
 	
 	<!-- JS -->
 	<script src="../../../../scripts/buildfire.js"></script>
+    <script src="../../widget/js/scoreboard.js"></script>
+    <!-- endbuild -->
+    <script src="../../../../scripts/buildfire/services/notifications/pushNotifications.js"></script>
    
  	<!--
     <script src="../../../../scripts/angular/angular.min.js"></script>
@@ -26,6 +29,38 @@
    -->
 </head>
 <body>
-<span>Content - Hello world!</span>
+    Games Played <span id="gamesPlayed"></span>
+    <button class="btn btn-danger pull-right" onclick="scoreboard.reset()"> Reset Scoreboard </button>
+    <h3 style="margin-top:50px;">Send message to players</h3>
+    <form>
+        <div class="form-group">
+            <labal>Title</labal>
+            <input type="text" id="title" class="form-control">
+        </div>
+        <div class="form-group">
+            <labal>Text</labal>
+            <input type="text" id="text" class="form-control">
+        </div>
+        <button class="btn btn-success pull-right" onclick="send()">Send</button>
+    </form>
+
+    <script>
+        var scoreboard = new buildfire.gamify.Scoreboard("scoreboard",10,true);
+
+        scoreboard.getScoreboard(function(err, obj){
+            if(obj && gamesPlayed)
+            document.getElementById("gamesPlayed").innerHTML = obj.gamesPlayed;
+        });
+
+        function send(){
+            buildfire.notifications.pushNotification.schedule({
+                title: document.getElementById("title").value
+                ,text:  document.getElementById("text").value
+                ,groupName: scoreboard.pushGroupName
+            }, function(err){
+                console.error(err);
+            });
+        }
+    </script>
 </body>
 </html>
