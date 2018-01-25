@@ -3,36 +3,17 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!--
-		NOTE:
-		1. You can reference the file in SDK via relative path
-		2. The Control and Widget Should NOT share resources. They will be separated in production.
-		3. You may include any JS framework you want with your Widget and Control folders. However, keep in mind
-		    to keep you plugin as light weight as possible for performance and transport reasons
-	-->
-
-    <!-- You can load helper.css to use our helper classes.
-    <link href="../../../../styles/helper.css" rel="stylesheet">
-    -->
-	
-	<!-- JS -->
-	<script src="../../../../scripts/buildfire.js"></script>
-    <script src="../../widget/js/scoreboard.js"></script>
-    <!-- endbuild -->
+    <script src="../../../../scripts/buildfire.min.js"></script>
+    <script src="../../../../scripts/buildfire/services/gamify/scoreboard.min.js"></script>
     <script src="../../../../scripts/buildfire/services/notifications/pushNotifications.js"></script>
    
- 	<!--
-    <script src="../../../../scripts/angular/angular.min.js"></script>
-    <script src="../../../../scripts/angular/ui-bootstrap.min.js"></script>
 
-   <script src="../../../../scripts/jquery/jquery-1.11.2.min.js"></script>
-   -->
 </head>
 <body>
     Games Played <span id="gamesPlayed"></span>
     <button class="btn btn-danger pull-right" onclick="scoreboard.reset()"> Reset Scoreboard </button>
     <h3 style="margin-top:50px;">Send message to players</h3>
-    <form>
+    <div>
         <div class="form-group">
             <labal>Title</labal>
             <input type="text" id="title" class="form-control">
@@ -42,7 +23,7 @@
             <input type="text" id="text" class="form-control">
         </div>
         <button class="btn btn-success pull-right" onclick="send()">Send</button>
-    </form>
+    </div>
 
     <script>
         var scoreboard = new buildfire.gamify.Scoreboard("scoreboard",10,true);
@@ -53,13 +34,15 @@
         });
 
         function send(){
+
             buildfire.notifications.pushNotification.schedule({
                 title: document.getElementById("title").value
-                ,text:  document.getElementById("text").value
+                ,text: document.getElementById("text").value
                 ,groupName: scoreboard.pushGroupName
             }, function(err){
                 console.error(err);
             });
+            document.getElementById("title").value=document.getElementById("text").value='';
         }
     </script>
 </body>
