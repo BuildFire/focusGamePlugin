@@ -45,6 +45,9 @@ var game= {
     , showGameOver:function(score){}
     , showFocusSymbol: function (symbol, cb) {}
     , getStage: function () {
+
+        //return new Stage(60, shapes.shuffle().slice(0,8), colors,game.currentLevel );
+
         if(game.currentLevel <= 10)
             return new Stage(6, shapes.shuffle().slice(0,3), colors.slice(0,3),game.currentLevel );
         else if(game.currentLevel <= 20)

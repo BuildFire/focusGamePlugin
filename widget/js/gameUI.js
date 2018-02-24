@@ -39,6 +39,10 @@ var gameUI= {
                 html += '<img style="background-color:' + s.color  + '" class="shape" src="' + shapeBaseURL + s.shape + '.png" />';
             });
             gameUI.shapesSection.innerHTML=html;
+
+            var scale = 1.0 - (symbols.length-8)/10;
+            gameUI.shapesSection.style.transform='scale(' + scale + ')';
+
             gameUI.actionBar.classList.remove("hidden");
             gameUI.arc.style.animationDuration = seconds+ 's';
             setTimeout(function() {

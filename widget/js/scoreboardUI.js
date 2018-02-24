@@ -16,7 +16,7 @@ var scoreboardUI = {
 
 
         if (!board || !board.topScores || !board.topScores.length) {
-            document.getElementById('status').innerHTML = "empty scoreboard";
+            location = 'game.html';
             return;
         }
 
